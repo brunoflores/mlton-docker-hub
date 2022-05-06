@@ -28,3 +28,4 @@ jobs:
           push: false
           tags: floresbruno/mlton-ci:latest
           cache-from: type=registry,ref=floresbruno/mlton-ci:buildcache
+          cache-to: type=registry,ref=floresbruno/mlton-ci:buildcache,mode=max
