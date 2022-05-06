@@ -1,2 +1,3 @@
-# mlton-docker-hub
+# MLton CI image
+
 A Docker image with MLton for CI environments.
