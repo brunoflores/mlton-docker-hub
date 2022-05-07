@@ -20,4 +20,14 @@ RUN git clone https://github.com/MLton/mlton.git . && \
   git checkout 625209f402e0a3d5f8c7012572df9a72ed1db651 && \
   make all -j && \
   make PREFIX=/opt/mlton install
+
+FROM debian:bullseye
+# MLton requires:
+#   - a C compiler
+#   - GMP (GNU Multiple Precision arithmetic library)
+RUN apt update && apt install -y wget build-essential libgmp3-dev \
+  lsb-release software-properties-common # LLVM dependencies.
+# Install LLVM 15 - that is to test with MLton's LLVM backend.
+RUN wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && ./llvm.sh 15
+COPY --from=0 /opt/mlton /opt/mlton
 ENV PATH /opt/mlton/bin:$PATH
