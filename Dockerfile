@@ -26,5 +26,7 @@ FROM debian:bullseye
 #   - a C compiler
 #   - GMP (GNU Multiple Precision arithmetic library)
 RUN apt update && apt install -y build-essential libgmp3-dev
+# Install LLVM 15 - that is to test with MLton's LLVM backend.
+RUN wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && ./llvm.sh 15
 COPY --from=0 /opt/mlton /opt/mlton
 ENV PATH /opt/mlton/bin:$PATH
