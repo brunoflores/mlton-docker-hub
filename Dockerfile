@@ -22,5 +22,7 @@ RUN git clone https://github.com/MLton/mlton.git . && \
   make PREFIX=/opt/mlton install
 
 FROM debian:bullseye
+# MLton requires a C compiler in the path.
+RUN apt update && apt install -y build-essential
 COPY --from=0 /opt/mlton /opt/mlton
 ENV PATH /opt/mlton/bin:$PATH
