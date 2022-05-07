@@ -25,7 +25,8 @@ FROM debian:bullseye
 # MLton requires:
 #   - a C compiler
 #   - GMP (GNU Multiple Precision arithmetic library)
-RUN apt update && apt install -y build-essential libgmp3-dev wget
+RUN apt update && apt install -y wget build-essential libgmp3-dev \
+  lsb-release software-properties-common # LLVM dependencies.
 # Install LLVM 15 - that is to test with MLton's LLVM backend.
 RUN wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && ./llvm.sh 15
 COPY --from=0 /opt/mlton /opt/mlton
