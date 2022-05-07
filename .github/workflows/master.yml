@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: false
-          tags: floresbruno/mlton-ci:latest
+          push: true
+          tags: floresbruno/mlton-ci:snapshot-master
           cache-from: type=registry,ref=floresbruno/mlton-ci:buildcache
           cache-to: type=registry,ref=floresbruno/mlton-ci:buildcache,mode=max
